@@ -7,6 +7,7 @@ services:
     runtime: docker
     dockerfilePath: Dockerfile.n8n
     healthCheckPath: /
+    port: 5678
     envVars:
       # Database configuration
       - key: DB_TYPE
@@ -45,9 +46,9 @@ services:
       # Rate limit settings
       - key: N8N_DISABLE_RATE_LIMIT
         value: "true"
-      # Path settings
-      - key: PATH
-        value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      # HTTP Proxy settings
+      - key: N8N_HTTP_PROXY_TRUST_PROXY_HEADER
+        value: "true"
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
