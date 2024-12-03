@@ -19,9 +19,6 @@ ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 # Switch back to node user
 USER node
 
-# Expose port
-EXPOSE 5678
-
-# Start n8n using full path
+# Start n8n
 ENTRYPOINT ["/usr/local/bin/n8n"]
 CMD ["start"]

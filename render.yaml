@@ -37,8 +37,6 @@ services:
         value: n8n-fj3k.onrender.com
       - key: N8N_PROTOCOL
         value: https
-      - key: N8N_PORT
-        value: "5678"
       - key: WEBHOOK_URL
         value: https://n8n-fj3k.onrender.com
       # File permissions
