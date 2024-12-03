@@ -42,14 +42,12 @@ services:
         value: "5678"
       - key: WEBHOOK_URL
         value: "https://${RENDER_EXTERNAL_HOSTNAME}"
-      - key: NODE_TLS_REJECT_UNAUTHORIZED
-        value: "0"
-      - key: EXPRESS_TRUST_PROXY
-        value: "true"
       - key: N8N_TRUSTED_PROXIES
         value: "*"
-      - key: N8N_METRICS
-        value: "false"
+      - key: EXPRESS_TRUST_PROXY
+        value: "true"
+      - key: N8N_CONFIG_FILES
+        value: "/home/node/.n8n/config.json"
       # Default admin user configuration
       - key: N8N_DEFAULT_USER_EMAIL
         sync: false
