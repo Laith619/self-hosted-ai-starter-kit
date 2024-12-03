@@ -32,6 +32,8 @@ services:
         sync: false
       - key: N8N_USER_MANAGEMENT_JWT_SECRET
         sync: false
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: "true"
       # URL configuration
       - key: N8N_HOST
         value: "${RENDER_EXTERNAL_HOSTNAME}"
@@ -60,6 +62,11 @@ services:
       # Proxy settings
       - key: N8N_TRUST_PROXY_HEADER
         value: "true"
+      # Path settings
+      - key: NODE_PATH
+        value: "/usr/local/lib/node_modules"
+      - key: PATH
+        value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
