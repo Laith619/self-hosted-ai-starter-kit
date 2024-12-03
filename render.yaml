@@ -40,15 +40,13 @@ services:
         value: https
       - key: WEBHOOK_URL
         value: https://n8n-fj3k.onrender.com
-      # File permissions
-      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+      # Security settings
+      - key: N8N_SECURITY_TRUST_PROXY
         value: "true"
-      # Rate limit settings
-      - key: N8N_DISABLE_RATE_LIMIT
+      - key: N8N_TRUST_PROXY_HEADER
         value: "true"
-      # HTTP Proxy settings
-      - key: N8N_HTTP_PROXY_TRUST_PROXY_HEADER
-        value: "true"
+      - key: N8N_TRUST_PROXY_HOPS
+        value: "1"
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
