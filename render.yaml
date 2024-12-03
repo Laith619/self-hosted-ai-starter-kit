@@ -3,11 +3,12 @@ services:
     name: n8n
     env: docker
     region: oregon
-    plan: starter # $7/month
+    plan: starter
     runtime: docker
     dockerfilePath: Dockerfile.n8n
     healthCheckPath: /
     envVars:
+      # Database configuration
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
@@ -26,29 +27,21 @@ services:
         fromDatabase:
           name: n8n-db
           property: database
+      # Security settings
       - key: N8N_ENCRYPTION_KEY
         sync: false
       - key: N8N_USER_MANAGEMENT_JWT_SECRET
         sync: false
-      - key: N8N_DIAGNOSTICS_ENABLED
-        value: "false"
-      - key: N8N_PERSONALIZATION_ENABLED
-        value: "false"
-      - key: N8N_PROTOCOL
-        value: "https"
+      # URL configuration
       - key: N8N_HOST
         value: "${RENDER_EXTERNAL_HOSTNAME}"
+      - key: N8N_PROTOCOL
+        value: "https"
       - key: N8N_PORT
         value: "5678"
       - key: WEBHOOK_URL
         value: "https://${RENDER_EXTERNAL_HOSTNAME}"
-      - key: N8N_TRUSTED_PROXIES
-        value: "*"
-      - key: EXPRESS_TRUST_PROXY
-        value: "true"
-      - key: N8N_CONFIG_FILES
-        value: "/home/node/.n8n/config.json"
-      # Default admin user configuration
+      # Admin user configuration
       - key: N8N_DEFAULT_USER_EMAIL
         sync: false
       - key: N8N_DEFAULT_USER_PASSWORD
@@ -57,22 +50,32 @@ services:
         value: "Admin"
       - key: N8N_DEFAULT_USER_LASTNAME
         value: "User"
+      # Feature flags
+      - key: N8N_DIAGNOSTICS_ENABLED
+        value: "false"
+      - key: N8N_PERSONALIZATION_ENABLED
+        value: "false"
+      - key: N8N_METRICS
+        value: "false"
+      # Proxy settings
+      - key: N8N_TRUST_PROXY_HEADER
+        value: "true"
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
-      sizeGB: 10 # $2.50/month
+      sizeGB: 10
 
   - type: web
     name: qdrant
     env: docker
     region: oregon
-    plan: starter # $7/month
+    plan: starter
     runtime: docker
     dockerfilePath: Dockerfile.qdrant
     disk:
       name: qdrant-data
       mountPath: /qdrant/storage
-      sizeGB: 10 # $2.50/month
+      sizeGB: 10
 
 databases:
   - name: n8n-db
@@ -82,6 +85,6 @@ databases:
       - source: 0.0.0.0/0
         description: everywhere
     region: oregon
-    plan: basic-1gb # $23.50/month
+    plan: basic-1gb
     postgresMajorVersion: "16"
-    diskSizeGB: 15 # included in plan
+    diskSizeGB: 15
