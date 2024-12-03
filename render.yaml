@@ -41,6 +41,12 @@ services:
         value: "5678"
       - key: WEBHOOK_URL
         value: https://n8n-fj3k.onrender.com
+      # File permissions
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: "true"
+      # Path settings
+      - key: PATH
+        value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
