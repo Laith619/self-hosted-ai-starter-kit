@@ -44,6 +44,9 @@ services:
       # File permissions
       - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
         value: "true"
+      # Rate limit settings
+      - key: N8N_DISABLE_RATE_LIMIT
+        value: "true"
       # Path settings
       - key: PATH
         value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"

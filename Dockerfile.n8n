@@ -8,6 +8,11 @@ RUN mkdir -p /home/node/.n8n && \
     chown -R node:node /home/node/.n8n && \
     chmod -R 700 /home/node/.n8n
 
+# Create config file with rate limit disabled
+RUN echo '{"endpoints": {"rest": {"rateLimit": {"enabled": false}}}}' > /home/node/.n8n/config && \
+    chown node:node /home/node/.n8n/config && \
+    chmod 600 /home/node/.n8n/config
+
 # Set environment variable for file permissions
 ENV N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
