@@ -8,11 +8,6 @@ RUN mkdir -p /home/node/.n8n && \
     chown -R node:node /home/node/.n8n && \
     chmod -R 700 /home/node/.n8n
 
-# Create config file with trust proxy settings
-RUN echo '{"endpoints":{"rest":{"rateLimit":{"enabled":false}}},"security":{"trustProxy":true}}' > /home/node/.n8n/config && \
-    chown node:node /home/node/.n8n/config && \
-    chmod 600 /home/node/.n8n/config
-
 # Switch back to node user
 USER node
 
@@ -21,4 +16,4 @@ EXPOSE 5678
 
 # Start n8n
 ENTRYPOINT ["/usr/local/bin/n8n"]
-CMD ["start", "--tunnel"]
+CMD ["start"]
